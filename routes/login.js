@@ -1,15 +1,37 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const loginController = require('../controllers/loginController.js');
+
 
 /* GET login listing. */
-router.get('/', (req, res, next) => {
-  res.render('login/index.ejs', { title: 'Login' });
-});
+router.get('/', loginController.index);
 
-router.post('/', (req, res, next) => {
-  // ユーザー認証処理
-  // 一覧画面へリダイレクト
-  res.redirect('/list');
-});
+
+// router.post('/', (req, res, next) => {
+
+//   // ユーザー認証処理
+//   const email = req.body.email;
+//   connection.query(
+//     'SELECT * FROM users WHERE email = ?',
+//     [email],
+//     (error, results) => {
+//       console.log(error);
+//       if (results.length > 0) {
+//         if (req.body.password === results[0].password) {
+//           req.session.userId = results[0].id;
+//           req.session.userName = results[0].name;
+//           // 一覧画面へリダイレクト
+//           res.redirect('/list');
+//         } else {
+//           // ログイン画面へリダイレクト
+//           res.redirect('/login');
+//         }
+//       } else {
+//         // ログイン画面へリダイレクト
+//         res.redirect('/login');
+//       }
+//     }
+//   );
+// });
 
 module.exports = router;
