@@ -9,11 +9,6 @@ router.get('/', userController.index);
 router.get('/new', userController.new);
 
 /* POST user create */
-// 空白チェック
-router.post('/create', userController.isEmpty);
-// 重複チェック
-router.post('/create', userController.isValid);
-// ユーザー登録
-router.post('/create', userController.isCreate);
+router.post('/create', userController.isEmpty, userController.isValid, userController.isCreate);
 
 module.exports = router;
