@@ -3,7 +3,7 @@
  */
 
 const loginController = {
-  async index(req, res, next) {
+  async index(req, res) {
     console.log('controller login index');
     res.render('login/index');
   },

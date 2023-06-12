@@ -10,6 +10,9 @@ const cookieParser = require('cookie-parser');
 
 // ログ格納場所
 const logDirectory = path.join(__dirname, './logs');
+// ディレクトリ存在確認
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+logger.accessLogStream = fs.createWriteStream(path.join(__dirname, './logs/access.log'), { flags: 'a'});
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -30,10 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ディレクトリ存在確認
-fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
-logger.accessLogStream = fs.createWriteStream(path.join(__dirname, './logs/access.log'), { flags: 'a'});
-
+// アクセスログ出力
 app.use(logger('combined', { stream: logger.accessLogStream}));
 
 

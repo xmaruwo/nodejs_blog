@@ -1,0 +1,19 @@
+<%- include('../partials/head', { title: title }); %>
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+  <main>
+    <div class="container">
+      <h2>新規登録</h2>
+      <form action="/users/create" method="post">
+        <p>ユーザー名</p>
+        <input type="text" name="userName">
+        <p>メールアドレス</p>
+        <input type="text" name="userEmail">
+        <p>パスワード</p>
+        <input type="password" name="userPassword">
+        <input type="submit" value="登録">
+      </form>
+    </div>
+  </main>
+<%- include('../partials/footer'); %>
