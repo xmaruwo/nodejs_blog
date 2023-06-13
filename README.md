@@ -17,6 +17,8 @@ Progateで学習したNode.js Webサービス開発をベースにブログサ�
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+___
+
 ## 目的
 学習したNode.js Webサービス開発の知識を元に、Node.js、Express、Sequelize（MySQL）を使ってMVC化したWebサービスを作成する
 
