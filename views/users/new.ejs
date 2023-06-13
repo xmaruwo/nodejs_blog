@@ -5,6 +5,13 @@
   <main>
     <div class="container">
       <h2>新規登録</h2>
+      <% if (errors.length > 0) { %>
+        <ul class="errors">
+          <% errors.forEach(error => { %>
+            <li><%= error %></li>
+          <% }) %>
+        </ul>
+      <% } %>
       <form action="/users/create" method="post">
         <p>ユーザー名</p>
         <input type="text" name="userName">
