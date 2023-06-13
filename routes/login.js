@@ -4,8 +4,10 @@ const loginController = require('../controllers/loginController.js');
 
 
 /* GET login listing. */
+// ログイン画面表示
 router.get('/', loginController.index);
-
+// ログイン認証処理
+router.post('/', loginController.isEmpty, loginController.auth);
 
 // router.post('/', (req, res, next) => {
 
