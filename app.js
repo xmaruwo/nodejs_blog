@@ -56,6 +56,7 @@ app.use((req, res, next) => {
     res.locals.isLoggedIn = false;
   } else {
     console.log('ログインしています');
+    res.locals.userId = req.session.userId;
     res.locals.userName = req.session.userName;
     res.locals.isLoggedIn = true;
   }
