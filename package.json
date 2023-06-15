@@ -20,5 +20,10 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
-  }
+  },
+  "description": "Progateで学習したNode.js Webサービス開発をベースにブログサイトを作成",
+  "main": "app.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
