@@ -11,4 +11,7 @@ router.get('/new', userController.new);
 /* POST user create */
 router.post('/create', userController.isEmpty, userController.isValid, userController.isCreate);
 
+/* GET users complate */
+router.get('/complete', userController.complete)
+
 module.exports = router;

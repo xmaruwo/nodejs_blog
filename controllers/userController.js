@@ -5,7 +5,7 @@ const models = require('../models');
 const user = models.user;
 const bcrypt = require('bcrypt');
 
-const redirectUserNewPath = '/users/new';
+const redirectCompletePath = '/users/complete';
 const redirectListPath = '/lists';
 
 const userController = {
@@ -89,7 +89,10 @@ const userController = {
     results = await user.create(userData);
 
     console.log(results);
-    res.redirect(redirectListPath);
+    res.redirect(redirectCompletePath);
+  },
+  async complete(req, res) {
+    res.render('users/complete.ejs')
   }
 
 };
