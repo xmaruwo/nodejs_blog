@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       summary: {
@@ -19,14 +20,14 @@ module.exports = {
         type: Sequelize.TEXT
       },
       user_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: {
             tableName: 'users'
           },
           key: 'id'
-        },
-        allowNull: false
+        }
       },
       category: {
         allowNull: false,
