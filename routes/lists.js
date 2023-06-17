@@ -1,9 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const listController = require('../controllers/listController');
 
 /* GET list listing. */
-router.get('/', (req, res, next) => {
-  res.render('lists/index', { title: '一覧' });
-});
+router.get('/', listController.index);
 
 module.exports = router;

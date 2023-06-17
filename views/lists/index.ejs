@@ -3,6 +3,15 @@
     <%- include('../partials/header'); %>
   </header>
   <main>
-    <%- include('../partials/body'); %>
+    <a href="/articles/new" class="btn">新規登録</a>
+    <ul class="list">
+      <% articles.forEach((article) => { %>
+        <li>
+          <h2><%= article.title %></h2>
+          <p><%= article.summary %></p>
+          <a href="/articles/<%= article.id %>">続きを読む</a>
+        </li>
+      <% }) %>
+    </ul>
   </main>
 <%- include('../partials/footer'); %>
