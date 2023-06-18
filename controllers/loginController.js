@@ -55,23 +55,30 @@ const loginController = {
       where: models.sequelize.where(models.sequelize.col('email'), email)
     });
 
-    console.log(result.password);
-    const comparedPassword = bcrypt.compareSync(password, result.password);
-    console.log('compared: ' + comparedPassword);
-
-    // パスワード照合
-    if (comparedPassword) {
-      // セッション情報設定
-      req.session.userId = result.id;
-      req.session.userName = result.name;
-
-      res.redirect(redirectListPath);
-    } else {
-      errors.push('ログインに失敗しました');
+    if (result === null) {
+      errors.push('ユーザーが見つかりませんでした');
       res.render('login/index', {
         title: 'ログイン',
         errors: errors,
       });
+    } else {
+      const comparedPassword = bcrypt.compareSync(password, result.password);
+      console.log('compared: ' + comparedPassword);
+
+      // パスワード照合
+      if (comparedPassword) {
+        // セッション情報設定
+        req.session.userId = result.id;
+        req.session.userName = result.name;
+
+        res.redirect(redirectListPath);
+      } else {
+        errors.push('ログインに失敗しました');
+        res.render('login/index', {
+          title: 'ログイン',
+          errors: errors,
+        });
+      }
     }
   },
 };
