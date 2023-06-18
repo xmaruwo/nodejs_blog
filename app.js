@@ -1,12 +1,13 @@
 const createError = require('http-errors');
 const express = require('express');
 const mysql = require('mysql2');
+const cookieParser = require('cookie-parser');
 const session = require('express-session');
+
 const fs = require('fs');
 const path = require('path');
 const logger = require('morgan');
 // const fs = require('fs-extra');
-const cookieParser = require('cookie-parser');
 
 // ログ格納場所
 const logDirectory = path.join(__dirname, './logs');
@@ -38,7 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('combined', { stream: logger.accessLogStream}));
 
 
-// セッション管理
+// express-session:: セッション管理
 app.use(
   session({
     secret: 'my_secret_key',
@@ -46,7 +47,6 @@ app.use(
     saveUninitialized: false,
   })
 );
-
 
 // ログイン情報確認
 app.use((req, res, next) => {

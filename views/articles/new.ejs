@@ -3,6 +3,25 @@
     <%- include('../partials/header'); %>
   </header>
   <main>
+    <div class="container">
+      <h2>記事：新規登録</h2>
+      <% if (errors.length > 0) { %>
+        <ul class="errors">
+          <% errors.forEach((error) => { %>
+            <li><%= error %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+      <form action="/articles/confirm" method="post">
+        <p>タイトル</p>
+        <input type="text" name="articleTitle">
+        <p>概要</p>
+        <input type="text" name="articleSummary">
+        <p>詳細</p>
+        <textarea name="articleContent"></textarea>
+        <input type="submit" value="確認">
+      </form>
+    </div>
     <%- include('../partials/body'); %>
   </main>
 <%- include('../partials/footer'); %>

@@ -1,0 +1,25 @@
+<%- include('../partials/head', { title: '一覧'}); %>
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+  <main>
+    <div class="container">
+      <h2>記事：登録内容確認</h2>
+      <form action="/articles/create" method="post">
+        <p>タイトル</p>
+        <p><%= articleTitle %></p>
+        <input type="hidden" name="articleTitle" value="<%= articleTitle %>">
+        <p>概要</p>
+        <p><%= articleSummary %></p>
+        <input type="hidden" name="articleSummary" value="<%= articleSummary %>">
+        <p>詳細</p>
+        <pre>
+          <%= articleContent %>
+        </pre>
+        <textarea style="display:none" name="articleContent"><%= articleContent %></textarea>
+        <input type="button" onclick="history.back()" value="戻る">
+        <input type="submit" value="登録">
+      </form>
+    </div>
+  </main>
+<%- include('../partials/footer'); %>
