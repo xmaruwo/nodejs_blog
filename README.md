@@ -39,4 +39,4 @@ https://github.com/xmaruwo/nodejs_blog/assets/94747777/ca73e21a-6607-4226-a928-f
 ## 作成済みの機能
 - ユーザー登録機能
 - ログイン認証機能
--
+- 記事登録機能
