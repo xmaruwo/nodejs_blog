@@ -3,7 +3,9 @@
     <%- include('../partials/header'); %>
   </header>
   <main>
-    <a href="/articles/new" class="btn">新規登録</a>
+    <% if (locals.isLoggedIn) { %>
+      <a href="/articles/new" class="btn">新規登録</a>
+    <% } %>
     <ul class="list">
       <% articles.forEach((article) => { %>
         <li>
