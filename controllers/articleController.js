@@ -22,6 +22,7 @@ const articleController = {
   async isEmpty(req, res, next) {
     console.log('articleController::confirm::: isEmpty');
     const title = req.body.articleTitle;
+    const category = req.body.categoryValue;
     const summary = req.body.articleSummary;
     const content = req.body.articleContent;
     const errors = [];
@@ -33,6 +34,7 @@ const articleController = {
     }
 
     console.log(title);
+    console.log(category);
     console.log(summary);
     console.log(content);
     console.log(errors);
@@ -40,6 +42,7 @@ const articleController = {
       res.render('articles/new', {
         title: '新規登録',
         articleTitle: title,
+        categoryValue: category,
         articleSummary: summary,
         articleContent: content,
         errors: errors,
@@ -52,12 +55,14 @@ const articleController = {
   async isConfirm(req, res) {
     console.log('articleController::confirm::: confirm');
     const title = req.body.articleTitle;
+    const category = req.body.categoryValue;
     const summary = req.body.articleSummary;
     const content = req.body.articleContent;
 
     res.render('articles/confirm', {
       title: '',
       articleTitle: title,
+      categoryValue: category,
       articleSummary: summary,
       articleContent: content,
     })
@@ -66,11 +71,13 @@ const articleController = {
   async isCreate(req, res) {
     console.log('articleController::confirm::: isCreate');
     const title = req.body.articleTitle;
+    const category = req.body.categoryValue;
     const summary = req.body.articleSummary;
     const content = req.body.articleContent;
 
     const articleData = {
       title: title,
+      category: category,
       summary: summary,
       content: content,
       user_id: req.session.userId,

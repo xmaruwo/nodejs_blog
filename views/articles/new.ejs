@@ -3,7 +3,7 @@
     <%- include('../partials/header'); %>
   </header>
   <main>
-    <div class="container">
+    <div class="article">
       <h2>記事：新規登録</h2>
       <% if (errors.length > 0) { %>
         <ul class="errors">
@@ -15,6 +15,8 @@
       <form action="/articles/confirm" method="post">
         <p>タイトル</p>
         <input type="text" name="articleTitle">
+        <p>閲覧制限</p>
+        <%- include('./category'); %>
         <p>概要</p>
         <input type="text" name="articleSummary">
         <p>詳細</p>

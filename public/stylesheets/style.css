@@ -43,6 +43,27 @@ select {
   font: inherit;
 }
 
+select, option {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  border: 1px solid #d5dee8;
+  background-color: #FCFCFD;
+  height: 40px;
+  padding: 0 20px;
+}
+
+select::after {
+    position: absolute;
+    right: 15px;
+    width: 10px;
+    height: 7px;
+    background-color: #535353;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    content: '';
+    pointer-events: none;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -75,6 +96,20 @@ a {
   padding: 0 20px;
   border-radius: 6px;
   letter-spacing: 0.05em;
+}
+
+.article > form > p {
+  padding-top: 15px;
+}
+
+.article > form > div > .btn {
+  text-align: center;
+}
+
+.article > form > .btn, input[type="button"],input[type="submit"] {
+  display:inline-block;
+  width:40%;
+  height: 54px;
 }
 
 .article-forms > i.limited {
@@ -719,4 +754,7 @@ input[type="submit"].btn-confirm.sub:hover {
   background-color: #A9B9D2;
 }
 
+input[type="button"].btn-confirm {
+  background-color: #A9B9D2;
+}
 

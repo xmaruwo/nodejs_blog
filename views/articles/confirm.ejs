@@ -3,22 +3,29 @@
     <%- include('../partials/header'); %>
   </header>
   <main>
-    <div class="container">
+    <div class="article">
       <h2>記事：登録内容確認</h2>
       <form action="/articles/create" method="post">
         <p>タイトル</p>
         <p><%= articleTitle %></p>
         <input type="hidden" name="articleTitle" value="<%= articleTitle %>">
+        <p>閲覧制限</p>
+        <% if (categoryValue == 0) { %>
+          <p>なし</p>
+        <% } else { %>
+          <p>会員限定</p>
+        <% } %>
+        <input type="hidden" name="categoryValue" value="<%= categoryValue %>">
         <p>概要</p>
         <p><%= articleSummary %></p>
         <input type="hidden" name="articleSummary" value="<%= articleSummary %>">
         <p>詳細</p>
-        <pre>
+        <p>
           <%= articleContent %>
-        </pre>
+        </p>
         <textarea style="display:none" name="articleContent"><%= articleContent %></textarea>
-        <input type="button" onclick="history.back()" value="戻る">
-        <input type="submit" value="登録">
+        <input type="button" class="btn-confirm" onclick="history.back()" value="戻る">
+        <input type="submit" class="btn" value="登録">
       </form>
     </div>
   </main>
