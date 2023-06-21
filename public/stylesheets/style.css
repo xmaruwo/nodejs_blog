@@ -467,6 +467,10 @@ header > p:after {
   font-size: 30px;
 }
 
+.btn-new {
+  margin-bottom: 10px;
+}
+
 .list li, .list-admin li {
   position: relative;
   padding: 28px 40px 54px;
