@@ -4,22 +4,24 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "start:debug": "nodemon -L --inspect-brk=0.0.0.0:3001 ./bin/www"
+    "start:debug": "nodemon -L --inspect-brk=0.0.0.0:3001 ./bin/www",
+    "test": "mocha"
   },
   "dependencies": {
-    "bcrypt": "^5.1.0",
+    "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "http-errors": "~1.6.3",
+    "mocha": "^10.2.0",
     "morgan": "~1.9.1",
     "mysql2": "^3.3.1",
     "sequelize": "^6.31.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^1.14.9"
   },
   "description": "Progateで学習したNode.js Webサービス開発をベースにブログサイトを作成",
   "main": "app.js",
