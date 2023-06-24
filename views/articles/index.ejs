@@ -3,6 +3,18 @@
     <%- include('../partials/header'); %>
   </header>
   <main>
-    <%- include('../partials/body'); %>
+    <h1><%= locals.userName %>さんの記事一覧</h1>
+    <% if (locals.isLoggedIn) { %>
+      <a href="/articles/new" class="btn btn-new">新規登録</a>
+    <% } %>
+    <ul class="list">
+      <% articles.forEach((article) => { %>
+        <li>
+          <h2><%= article.title %></h2>
+          <p><%= article.summary %></p>
+          <a href="/articles/show/<%= article.id %>">続きを読む</a>
+        </li>
+      <% }) %>
+    </ul>
   </main>
 <%- include('../partials/footer'); %>

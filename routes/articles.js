@@ -3,8 +3,8 @@ const router = express.Router();
 const articleController = require('../controllers/articleController.js')
 const authController = require('../controllers/authController.js');
 
-/* GET sample listing. */
-router.get('/', articleController.index)
+/* GET articles　index :: ユーザー記事一覧 */
+router.get('/:user_id', authController.isAuthenticated, articleController.index)
 
 /* GET articles new listing */
 router.get('/new', authController.isAuthenticated, articleController.new)
@@ -15,7 +15,10 @@ router.post('/confirm', authController.isAuthenticated, articleController.isEmpt
 /* POST articles create */
 router.post('/create', authController.isAuthenticated, articleController.isCreate)
 
-/* GET users complate */
+/* GET articles complate */
 router.get('/complete', authController.isAuthenticated, articleController.complete)
+
+/* GET articles show */
+router.get('/show/:id', articleController.show)
 
 module.exports = router;

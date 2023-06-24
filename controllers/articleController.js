@@ -7,8 +7,19 @@ const article = models.article;
 const redirectCompletePath = '/articles/complete';
 
 const articleController = {
+  // ユーザー記事一覧
   async index(req, res) {
-    res.render('articles/index', { title: '一覧'})
+    const user_id = req.params.user_id
+    const results = await article.findAll({
+      where: {
+        user_id: user_id
+      }
+    })
+    console.log(results)
+    res.render('articles/index', {
+      title: 'ユーザー記事一覧',
+      articles: results,
+    })
   },
 
   // 新規登録画面
@@ -90,6 +101,18 @@ const articleController = {
   // 登録完了
   async complete(req, res) {
     res.render('articles/complete')
+  },
+  // 詳細表示
+  async show(req, res) {
+    const id = req.params.id
+    const result = await article.findOne({
+      where: {
+        id: id
+      }
+    })
+    res.render('articles/show', {
+      article: result
+    })
   }
 };
 

@@ -1,0 +1,33 @@
+<%- include('../partials/head', { title: 'Sample'}); %>
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+  <main>
+    <div class="article">
+      <% if (locals.isLoggedIn) { // ログイン済 %>
+        <% if (locals.userId === article.user_id) { %>
+            <ul class="show-btn">
+              <li class="show-btn-item">
+                <a class="show-edit">編集</a>
+              </li>
+              <li>
+                <a class="show-delete">削除</a>
+              </li>
+            </ul>
+        <% } %>
+      <% } %>
+      <% if (article.category) { // 会員限定 %>
+        <h1><%= article.title %></h1>
+        <% if (locals.isLoggedIn) { %>
+          <p><%= article.content %></p>
+        <% } else { %>
+          <p>記事の続きは<br>ログインすると読むことができます</p>
+          <a class="btn" href="/login">ログイン</a>
+        <% } %>
+      <% } else { %>
+        <h1><%= article.title %></h1>
+        <p><%= article.content %></p>
+      <% } %>
+    </div>
+  </main>
+<%- include('../partials/footer'); %>
