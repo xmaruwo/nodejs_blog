@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const articleController = require('../controllers/articleController.js')
 const authController = require('../controllers/authController.js');
-
-/* GET articles　index :: ユーザー記事一覧 */
-router.get('/:user_id', authController.isAuthenticated, articleController.index)
+const articleController = require('../controllers/articleController.js');
 
 /* GET articles new listing */
 router.get('/new', authController.isAuthenticated, articleController.new)
@@ -20,5 +17,9 @@ router.get('/complete', authController.isAuthenticated, articleController.comple
 
 /* GET articles show */
 router.get('/show/:id', articleController.show)
+
+/* GET articles　index :: ユーザー記事一覧 */
+router.get('/:user_id', authController.isAuthenticated, articleController.index)
+
 
 module.exports = router;
