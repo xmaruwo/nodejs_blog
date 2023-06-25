@@ -18,6 +18,9 @@ router.get('/complete', authController.isAuthenticated, articleController.comple
 /* GET articles show */
 router.get('/show/:id', articleController.show)
 
+/* GET articles edit */
+router.get('/:user_id/edit/:id', authController.isAuthenticated, articleController.edit)
+
 /* GET articles　index :: ユーザー記事一覧 */
 router.get('/:user_id', authController.isAuthenticated, articleController.index)
 

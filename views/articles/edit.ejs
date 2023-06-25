@@ -1,0 +1,28 @@
+<%- include('../partials/head', { title: 'Sample'}); %>
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+  <main>
+    <div class="article">
+      <h2>記事：編集</h2>
+      <% if (errors.length > 0) { %>
+        <ul class="errors">
+          <% errors.forEach((error) => { %>
+            <li><%= error %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+      <form action="/articles/:id/confirm" method="post">
+        <p>タイトル</p>
+        <input type="text" name="articleTitle" value="<%= article.title %>">
+        <p>閲覧制限</p>
+        <%- include('./category'); %>
+        <p>概要</p>
+        <input type="text" name="articleSummary" value="<%= article.summary %>">
+        <p>詳細</p>
+        <textarea name="articleContent"><%= article.content %></textarea>
+        <input type="submit" value="確認">
+      </form>
+    </div>
+  </main>
+<%- include('../partials/footer'); %>

@@ -113,6 +113,23 @@ const articleController = {
     res.render('articles/show', {
       article: result
     })
+  },
+  // 編集画面
+  async edit(req, res) {
+    console.log('edit::::')
+    const user_id = req.params.user_id
+    const id = req.params.id
+    const result = await article.findOne({
+      where: {
+        id: id,
+        user_id: user_id
+      }
+    })
+    console.log(result)
+    res.render('articles/edit', {
+      article: result,
+      errors: []
+    })
   }
 };
 
