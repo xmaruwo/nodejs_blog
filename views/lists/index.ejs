@@ -10,6 +10,9 @@
       <% articles.forEach((article) => { %>
         <li>
           <h2><%= article.title %></h2>
+          <% if (article.category) { %>
+            <i>会員限定</i>
+          <% } %>
           <p><%= article.user.name %></p>
           <p><%= article.summary %></p>
           <a href="/articles/show/<%= article.id %>">続きを読む</a>
