@@ -176,6 +176,34 @@ const articleController = {
         errors: errors
       })
     }
+  },
+
+  // 更新
+  async update(req, res) {
+    console.log('update::::::')
+    const id = req.params.id;
+    const title = req.body.articleTitle;
+    const category = req.body.categoryValue;
+    const summary = req.body.articleSummary;
+    const content = req.body.articleContent;
+    const user_id = req.params.user_id;
+
+    const result = await article.update(
+      {
+        title: title,
+        category: category,
+        summary: summary,
+        content: content
+      },
+      {
+        where: { id: id, user_id: user_id }
+      }
+    ).then(() => {
+      console.log('then....')
+    })
+
+    console.log(result)
+    res.redirect(redirectCompletePath);
   }
 };
 

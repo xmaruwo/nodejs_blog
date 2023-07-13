@@ -24,6 +24,9 @@ router.get('/:user_id/edit/:id', authController.isAuthenticated, articleControll
 /* POST articles edit confirm */
 router.post('/:user_id/confirm/:id', authController.isAuthenticated, articleController.isEmpty, articleController.isConfirm)
 
+/* POST articles edit update */
+router.post('/:user_id/update/:id', authController.isAuthenticated, articleController.update)
+
 /* GET articles　index :: ユーザー記事一覧 */
 router.get('/:user_id', authController.isAuthenticated, articleController.index)
 
