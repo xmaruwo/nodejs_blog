@@ -1,0 +1,15 @@
+<%- include('../partials/head', { title: 'Sample'}); %>
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+  <main>
+    <% if (errors.length > 0) { %>
+      <div class="article" style="display: flex; justify-content: center; align-items: center; height: 30vh">
+        <% errors.forEach((error) => { %>
+          <h1 style="color:red"><%= error %></h1>
+        <% }) %>
+      </div>
+    <% } %>
+    <a href="/lists" class="btn">一覧画面へ</a>
+  </main>
+<%- include('../partials/footer'); %>

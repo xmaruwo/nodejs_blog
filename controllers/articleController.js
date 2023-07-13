@@ -44,20 +44,31 @@ const articleController = {
       errors.push('タイトルを入力して下さい');
     }
 
-    console.log(title);
-    console.log(category);
-    console.log(summary);
-    console.log(content);
-    console.log(errors);
     if (errors.length > 0) {
-      res.render('articles/new', {
-        title: '新規登録',
-        articleTitle: title,
-        categoryValue: category,
-        articleSummary: summary,
-        articleContent: content,
-        errors: errors,
-      })
+      const formType = req.body.formType;
+      if (formType === 'new') {
+        res.render('articles/new', {
+          title: '新規登録',
+          articleTitle: title,
+          categoryValue: category,
+          articleSummary: summary,
+          articleContent: content,
+          errors: errors,
+        })
+      } else if (formType === 'edit') {
+        const user_id = req.params.user_id;
+        const id = req.params.id;
+        console.log(article);
+        res.render('articles/edit', {
+          title: '記事更新',
+          action: '/articles/' + user_id + '/confirm/' + id,
+          articleTitle: title,
+          categoryValue: category,
+          articleSummary: summary,
+          articleContent: content,
+          errors: errors,
+        })
+      }
     } else {
       next();
     }
@@ -65,18 +76,34 @@ const articleController = {
   // 確認画面
   async isConfirm(req, res) {
     console.log('articleController::confirm::: confirm');
+
+    const formType = req.body.formType;
     const title = req.body.articleTitle;
     const category = req.body.categoryValue;
     const summary = req.body.articleSummary;
     const content = req.body.articleContent;
 
-    res.render('articles/confirm', {
-      title: '',
-      articleTitle: title,
-      categoryValue: category,
-      articleSummary: summary,
-      articleContent: content,
-    })
+    if (formType === 'new') {
+      res.render('articles/confirm', {
+        title: '登録内容確認',
+        action: '/articles/create',
+        articleTitle: title,
+        categoryValue: category,
+        articleSummary: summary,
+        articleContent: content,
+      })
+    } else if (formType === 'edit') {
+      const user_id = req.params.user_id;
+      const id = req.params.id;
+      res.render('articles/confirm', {
+        title: '更新内容確認',
+        action: '/articles/' + user_id + '/update/' + id,
+        articleTitle: title,
+        categoryValue: category,
+        articleSummary: summary,
+        articleContent: content,
+      })
+    }
   },
   // 登録
   async isCreate(req, res) {
@@ -116,20 +143,33 @@ const articleController = {
   },
   // 編集画面
   async edit(req, res) {
-    console.log('edit::::')
-    const user_id = req.params.user_id
-    const id = req.params.id
-    const result = await article.findOne({
-      where: {
-        id: id,
-        user_id: user_id
-      }
-    })
-    console.log(result)
-    res.render('articles/edit', {
-      article: result,
-      errors: []
-    })
+    console.log('edit::::');
+    const user_id = req.params.user_id;
+    const id = req.params.id;
+    const errors = [];
+
+    if (user_id == req.session.userId) {
+      const result = await article.findOne({
+        where: {
+          id: id,
+          user_id: user_id
+        }
+      });
+      console.log(result)
+      res.render('articles/edit', {
+        action: '/articles/' + user_id + '/confirm/' + id,
+        articleTitle: result.title,
+        categoryValue: result.category,
+        articleSummary: result.summary,
+        articleContent: result.content,
+        errors: errors
+      })
+    } else {
+      errors.push('この記事の編集権限はありません')
+      res.render('articles/message.ejs', {
+        errors: errors
+      })
+    }
   }
 };
 
