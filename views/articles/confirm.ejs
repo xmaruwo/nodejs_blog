@@ -4,8 +4,8 @@
   </header>
   <main>
     <div class="article">
-      <h2>記事：登録内容確認</h2>
-      <form action="/articles/create" method="post">
+      <h2>記事：<%= title %></h2>
+      <form action="<%= action %>" method="post">
         <p>タイトル</p>
         <p><%= articleTitle %></p>
         <input type="hidden" name="articleTitle" value="<%= articleTitle %>">

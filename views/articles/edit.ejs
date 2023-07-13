@@ -12,15 +12,16 @@
           <% }) %>
         </ul>
       <% } %>
-      <form action="/articles/:id/confirm" method="post">
+      <form action="<%= action %>" method="post">
         <p>タイトル</p>
-        <input type="text" name="articleTitle" value="<%= article.title %>">
+        <input type="text" name="articleTitle" value="<%= articleTitle %>">
         <p>閲覧制限</p>
-        <%- include('./category'); %>
+        <%- include('./category', {categoryValue: categoryValue}); %>
         <p>概要</p>
-        <input type="text" name="articleSummary" value="<%= article.summary %>">
+        <input type="text" name="articleSummary" value="<%= articleSummary %>">
         <p>詳細</p>
-        <textarea name="articleContent"><%= article.content %></textarea>
+        <textarea name="articleContent"><%- articleContent %></textarea>
+        <input type="hidden" name="formType" value="edit">
         <input type="submit" value="確認">
       </form>
     </div>
