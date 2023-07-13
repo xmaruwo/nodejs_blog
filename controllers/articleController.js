@@ -29,6 +29,7 @@ const articleController = {
       errors: [],
     })
   },
+
   // 必須入力チェック
   async isEmpty(req, res, next) {
     console.log('articleController::confirm::: isEmpty');
@@ -73,6 +74,7 @@ const articleController = {
       next();
     }
   },
+
   // 確認画面
   async isConfirm(req, res) {
     console.log('articleController::confirm::: confirm');
@@ -105,6 +107,7 @@ const articleController = {
       })
     }
   },
+
   // 登録
   async isCreate(req, res) {
     console.log('articleController::confirm::: isCreate');
@@ -125,10 +128,12 @@ const articleController = {
 
     res.redirect(redirectCompletePath);
   },
+
   // 登録完了
   async complete(req, res) {
     res.render('articles/complete')
   },
+
   // 詳細表示
   async show(req, res) {
     const id = req.params.id
@@ -141,6 +146,7 @@ const articleController = {
       article: result
     })
   },
+
   // 編集画面
   async edit(req, res) {
     console.log('edit::::');
