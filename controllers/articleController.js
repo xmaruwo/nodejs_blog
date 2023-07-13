@@ -4,7 +4,7 @@
 const models = require('../models');
 const article = models.article;
 
-const redirectCompletePath = '/articles/complete';
+const redirectCompletePath = '/articles/complete/';
 
 const articleController = {
   // ユーザー記事一覧
@@ -115,6 +115,7 @@ const articleController = {
     const category = req.body.categoryValue;
     const summary = req.body.articleSummary;
     const content = req.body.articleContent;
+    const type = 'create';
 
     const articleData = {
       title: title,
@@ -126,12 +127,28 @@ const articleController = {
     const results = await article.create(articleData);
     console.log(results);
 
-    res.redirect(redirectCompletePath);
+    res.redirect(redirectCompletePath + type);
   },
 
   // 登録完了
   async complete(req, res) {
-    res.render('articles/complete')
+    const type = req.params.type;
+    let title;
+    let message;
+    console.log('complete=======')
+    console.log(req.params.type)
+
+    if (type == 'create') {
+      title = '登録完了';
+      message = '登録が完了しました'
+    } else if (type == 'update') {
+      title = '更新完了'
+      message = '更新が完了しました'
+    }
+    res.render('articles/complete', {
+      title: title,
+      message: message,
+    })
   },
 
   // 詳細表示
@@ -187,6 +204,7 @@ const articleController = {
     const summary = req.body.articleSummary;
     const content = req.body.articleContent;
     const user_id = req.params.user_id;
+    const type = 'update';
 
     const result = await article.update(
       {
@@ -203,7 +221,7 @@ const articleController = {
     })
 
     console.log(result)
-    res.redirect(redirectCompletePath);
+    res.redirect(redirectCompletePath + type);
   }
 };
 

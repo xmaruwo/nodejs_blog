@@ -13,7 +13,7 @@ router.post('/confirm', authController.isAuthenticated, articleController.isEmpt
 router.post('/create', authController.isAuthenticated, articleController.isCreate)
 
 /* GET articles complate */
-router.get('/complete', authController.isAuthenticated, articleController.complete)
+router.get('/complete/:type', authController.isAuthenticated, articleController.complete)
 
 /* GET articles show */
 router.get('/show/:id', articleController.show)
