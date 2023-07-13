@@ -9,17 +9,17 @@ const redirectCompletePath = '/articles/complete/';
 const articleController = {
   // ユーザー記事一覧
   async index(req, res) {
-    const user_id = req.params.user_id
+    const user_id = req.params.user_id;
     const results = await article.findAll({
       where: {
         user_id: user_id
       }
-    })
-    console.log(results)
+    });
+
     res.render('articles/index', {
       title: 'ユーザー記事一覧',
       articles: results,
-    })
+    });
   },
 
   // 新規登録画面
@@ -27,7 +27,7 @@ const articleController = {
     res.render('articles/new.ejs', {
       title: '新規登録',
       errors: [],
-    })
+    });
   },
 
   // 必須入力チェック
@@ -55,7 +55,7 @@ const articleController = {
           articleSummary: summary,
           articleContent: content,
           errors: errors,
-        })
+        });
       } else if (formType === 'edit') {
         const user_id = req.params.user_id;
         const id = req.params.id;
@@ -68,7 +68,7 @@ const articleController = {
           articleSummary: summary,
           articleContent: content,
           errors: errors,
-        })
+        });
       }
     } else {
       next();
@@ -93,7 +93,7 @@ const articleController = {
         categoryValue: category,
         articleSummary: summary,
         articleContent: content,
-      })
+      });
     } else if (formType === 'edit') {
       const user_id = req.params.user_id;
       const id = req.params.id;
@@ -104,7 +104,7 @@ const articleController = {
         categoryValue: category,
         articleSummary: summary,
         articleContent: content,
-      })
+      });
     }
   },
 
@@ -123,7 +123,7 @@ const articleController = {
       summary: summary,
       content: content,
       user_id: req.session.userId,
-    }
+    };
     const results = await article.create(articleData);
     console.log(results);
 
@@ -135,33 +135,31 @@ const articleController = {
     const type = req.params.type;
     let title;
     let message;
-    console.log('complete=======')
-    console.log(req.params.type)
 
     if (type == 'create') {
       title = '登録完了';
-      message = '登録が完了しました'
+      message = '登録が完了しました';
     } else if (type == 'update') {
-      title = '更新完了'
-      message = '更新が完了しました'
+      title = '更新完了';
+      message = '更新が完了しました';
     }
     res.render('articles/complete', {
       title: title,
       message: message,
-    })
+    });
   },
 
   // 詳細表示
   async show(req, res) {
-    const id = req.params.id
+    const id = req.params.id;
     const result = await article.findOne({
       where: {
         id: id
       }
-    })
+    });
     res.render('articles/show', {
       article: result
-    })
+    });
   },
 
   // 編集画面
@@ -178,7 +176,7 @@ const articleController = {
           user_id: user_id
         }
       });
-      console.log(result)
+      console.log(result);
       res.render('articles/edit', {
         action: '/articles/' + user_id + '/confirm/' + id,
         articleTitle: result.title,
@@ -186,12 +184,12 @@ const articleController = {
         articleSummary: result.summary,
         articleContent: result.content,
         errors: errors
-      })
+      });
     } else {
       errors.push('この記事の編集権限はありません')
       res.render('articles/message.ejs', {
         errors: errors
-      })
+      });
     }
   },
 
@@ -216,11 +214,12 @@ const articleController = {
       {
         where: { id: id, user_id: user_id }
       }
-    ).then(() => {
+    ).then((e) => {
       console.log('then....')
-    })
+      console.log(e);
+    });
 
-    console.log(result)
+    console.log(result);
     res.redirect(redirectCompletePath + type);
   }
 };
