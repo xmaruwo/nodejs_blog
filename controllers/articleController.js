@@ -142,6 +142,9 @@ const articleController = {
     } else if (type == 'update') {
       title = '更新完了';
       message = '更新が完了しました';
+    } else if (type == 'delete') {
+      title = '削除完了';
+      message = '記事削除が完了しました';
     }
     res.render('articles/complete', {
       title: title,
@@ -203,24 +206,57 @@ const articleController = {
     const content = req.body.articleContent;
     const user_id = req.params.user_id;
     const type = 'update';
+    const errors = [];
 
-    const result = await article.update(
-      {
-        title: title,
-        category: category,
-        summary: summary,
-        content: content
-      },
-      {
+    if (user_id == req.session.userId) {
+      const result = await article.update(
+        {
+          title: title,
+          category: category,
+          summary: summary,
+          content: content
+        },
+        {
+          where: { id: id, user_id: user_id }
+        }
+      ).then((e) => {
+        console.log('then....')
+        console.log(e);
+      });
+
+      console.log(result);
+      res.redirect(redirectCompletePath + type);
+    } else {
+      errors.push('この記事の更新権限はありません')
+      res.render('articles/message.ejs', {
+        errors: errors
+      });
+    }
+  },
+
+  // 削除
+  async delete(req, res) {
+    console.log('delete =====');
+    const id = req.params.id;
+    const user_id = req.params.user_id;
+    const errors = [];
+    const type = 'delete';
+
+    if (user_id == req.session.userId) {
+      const result = await article.findOne({
         where: { id: id, user_id: user_id }
-      }
-    ).then((e) => {
-      console.log('then....')
-      console.log(e);
-    });
+      }).then(user => {
+        user.destroy();
+      });
 
-    console.log(result);
-    res.redirect(redirectCompletePath + type);
+      console.log(result);
+      res.redirect(redirectCompletePath + type);
+    } else {
+      errors.push('この記事の削除権限はありません')
+      res.render('articles/message.ejs', {
+        errors: errors
+      });
+    }
   }
 };
 
