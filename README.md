@@ -25,6 +25,8 @@ ___
 ##  Demo
 https://github.com/xmaruwo/nodejs_blog/assets/94747777/ca73e21a-6607-4226-a928-f8bc8ccb26c7
 
+[!['altDemo']('https://user-images.githubusercontent.com/94747777/255374736-39ebd8bd-bcd5-46cc-b49e-c667411fcbca.png')]('https://youtu.be/ZlT9QI7shgM')
+
 ## 環境各種
 | 環境/言語/など | バージョン |
 ----|----
