@@ -1,5 +1,5 @@
 # nodejs_blog
-Progateで学習したNode.js Webサービス開発をベースにログイン機能付きのブログサイトを作成
+Progateで学習したNode.js Webサービス開発をベースにログイン機能付きの記事投稿サイトを作成
 
 
 <a href="https://trackgit.com">
