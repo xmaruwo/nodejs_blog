@@ -23,7 +23,7 @@ ___
 学習したNode.js Webサービス開発の知識を元に、Node.js、Express、Sequelize（MySQL）を使ってMVC化したWebサービスを作成する
 
 ##  Demo
-最新のDemo動画 👉　https://youtu.be/ZlT9QI7shgM
+最新のDemo動画 👉　https://youtu.be/ftn0kI3g9rc
 
 https://github.com/xmaruwo/nodejs_blog/assets/94747777/ca73e21a-6607-4226-a928-f8bc8ccb26c7
 
